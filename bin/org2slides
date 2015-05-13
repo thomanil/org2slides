@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require "org2slides"
+
 def body(orgfile_path)
   `cat #{orgfile_path}`
 end
@@ -8,26 +10,7 @@ def title(orgfile_path)
   `cat #{orgfile_path} | grep "#+TITLE:" `.gsub("#+TITLE:", "").strip
 end
 
-def transform_divs_into_sections(html_markup)
-  require 'nokogiri'
-
-  doc = Nokogiri::HTML(html_markup)
-
-  doc.css("div").each do |node|
-    node.node_name = "section"
-  end
-  doc.css("li").each do |node|
-    node['class']="fragment"
-  end
-  doc.css("pre").each do |node|
-    node['class']="fragment"
-  end
-
-  return doc
-end
-
-
-def slide_layout(title, body)
+def layout(title, body)
   <<MARKUP
 <!doctype html>
 <html lang="en">
@@ -207,9 +190,7 @@ module Orgmode
 
       unclosed_html = rp.to_html
       closed_html = unclosed_html << "END-SLIDE"
-      slide_tagged_html = closed_html.gsub("START-SLIDE", "\n<section>").gsub("END-SLIDE","\n</section>")
-
-      #rp.to_html#
+      sectioned_html = closed_html.gsub("START-SLIDE", "\n<section>").gsub("END-SLIDE","\n</section>")
     end
   end
 
@@ -288,14 +269,14 @@ def convert(orgfile_path)
   slide_markup_body = ast.to_revealjs_html
 
   title = "" # TODO derive title from filename and|or org contents
-  body = slide_layout(title, slide_markup_body)
+  full_body = layout(title, slide_markup_body)
 
   #puts body
 
   htmldir_name = orgfile_path.gsub(".org", "")
   gem_root_path = File.expand_path(File.dirname(__FILE__))+"/.."
   `cp -r #{gem_root_path}/templates/reveal_js_template #{htmldir_name}_generated_slides`
-  File.open("#{htmldir_name}_generated_slides/index.html", 'w') { |file| file.write(body) }
+  File.open("#{htmldir_name}_generated_slides/index.html", 'w') { |file| file.write(full_body) }
   return htmldir_name
 end
 
@@ -309,3 +290,5 @@ htmldir_name = convert(ARGV[0])
 
 puts "\n\nSlides generated here:"
 puts  "#{htmldir_name}_generated_slides/index.html\n\n"
+
+puts OrgToSlides::VERSION

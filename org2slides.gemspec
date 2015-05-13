@@ -4,7 +4,7 @@ require "org2slides"
 
 Gem::Specification.new do |s|
   s.name        = "org2slides"
-  s.version     = OrgmodeCliTools::VERSION
+  s.version     = OrgToSlides::VERSION
   s.authors     = ["Thomas Kjeldahl Nilsson"]
   s.email       = ["thomas@kjeldahlnilsson.net"]
   s.homepage    = "https://kjeldahlnilsson.net"
