@@ -1,18 +1,10 @@
-* Finish conversion
-
-  - Subclass htmloutputbuffer ing org-ruby, to ouput reveal js friendly html (sections etc)
-    Can I embed all the revealjs stuff into single layout that the buffer output can be slotted into? If so , then extend ruby-org with that? Pull request?
-  - Flatten org structure: every headline is a slide (document this, both text and visually)
-  - Make sure the basics ie. bulletpoints, emphasis, bolding etc works
-
-* Make sure code highlighting works
-
-* Support img-only slides (http link to image)
-
-* Support directly embedding html markup
-
+* Support more params
 * Lock org parser version
+* Publish gem
 
+
+* Try to figure out true code highlighting (syntax coloring)
+* Support directly embedding html markup
 * Upgrade reveal.js version
   And make it less messy. Can I condense all the reveal js assets into single template file?
 
@@ -20,6 +12,12 @@
 ** Overriding/default theme
 ** Support introducing metadata about slide-specific overrides
 ** Support supplying a slide-style.css file with css overrides
+
+* Publish v1
+
+* Tweak styling of image-only (with headline) slides
+  LArger pic, fill screen?
+  Headline placement?
 
 * Elisp function
 ** Shell out to the org2lisp tool, then launch open the generated index file

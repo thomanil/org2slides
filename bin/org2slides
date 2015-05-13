@@ -291,4 +291,5 @@ htmldir_name = convert(ARGV[0])
 puts "\n\nSlides generated here:"
 puts  "#{htmldir_name}_generated_slides/index.html\n\n"
 
-puts OrgToSlides::VERSION
+# TODO Param to display version (-v, --version)
+#puts OrgToSlides::VERSION
