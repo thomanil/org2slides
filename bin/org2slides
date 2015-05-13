@@ -10,12 +10,9 @@ end
 
 def transform_divs_into_sections(html_markup)
   require 'nokogiri'
+
   doc = Nokogiri::HTML(html_markup)
-  doc.css("#preamble").remove
-  doc.css("style").remove
-  doc.css(".title").remove
-  doc.css("head").remove
-  doc.css("#table-of-contents").remove
+
   doc.css("div").each do |node|
     node.node_name = "section"
   end
@@ -25,7 +22,8 @@ def transform_divs_into_sections(html_markup)
   doc.css("pre").each do |node|
     node['class']="fragment"
   end
-  doc.css("#content").inner_html
+
+  return doc
 end
 
 
@@ -117,24 +115,38 @@ def convert_old(orgfile_path)
   return htmldir_name
 end
 
+def ast_to_reveal_js_structure(ast)
+  ast.headlines.each do |h|
 
+
+    #if(h.level == 1)
+      puts "Header with level #{h.level} starts"
+      puts h.body_lines
+      puts "Header with level #{h.level} ends"
+    #end
+  end
+
+  body = ast.to_html
+end
 
 def convert(orgfile_path)
   require 'org-ruby'
   org_body = contents = File.read(orgfile_path)
-  body = Orgmode::Parser.new(org_body).to_html
+  ast = Orgmode::Parser.new(org_body)
+
+   ast_to_reveal_js_structure(ast)
 
 
-  body = transform_divs_into_sections(body)
+  #body = transform_divs_into_sections(body)
 
-  title = "" # TODO derive title from filename and|or org contents
-  body = slide_layout(title, body)
+  #title = "" # TODO derive title from filename and|or org contents
+  #body = slide_layout(title, body)
 
-  htmldir_name = orgfile_path.gsub(".org", "")
-  gem_root_path = File.expand_path(File.dirname(__FILE__))+"/.."
-  `cp -r #{gem_root_path}/templates/reveal_js_template #{htmldir_name}_generated_slides`
-  File.open("#{htmldir_name}_generated_slides/index.html", 'w') { |file| file.write(body) }
-  return htmldir_name
+  #htmldir_name = orgfile_path.gsub(".org", "")
+  #gem_root_path = File.expand_path(File.dirname(__FILE__))+"/.."
+  #`cp -r #{gem_root_path}/templates/reveal_js_template #{htmldir_name}_generated_slides`
+  #File.open("#{htmldir_name}_generated_slides/index.html", 'w') { |file| file.write(body) }
+  #return htmldir_name
 end
 
 if ARGV.length != 1
