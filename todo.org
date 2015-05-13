@@ -1,0 +1,25 @@
+* Finish conversion
+
+  - Flatten org structure: every headline is a slide
+  - Make sure bulletpoints, emphasis, bolding etc works
+
+* Lock org parser version
+
+* Upgrade reveal.js version
+
+* Make sure code highlighting works
+
+* Support img-only slides (http link to image)
+
+* Support directly embedding html markup
+
+* Make themes configurable
+** Overriding/default theme
+** Support introducing metadata about slide-specific overrides
+
+* Elisp function
+** Shell out to the org2lisp tool, then launch open the generated index file
+
+* Jump to page N
+** Jump directly to page n, either directly or by specifying line # in original orgfile
+** Have elisp support that
