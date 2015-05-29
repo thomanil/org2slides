@@ -83,38 +83,6 @@ module OrgToSlides
 MARKUP
     end
 
-    def convert_old(orgfile_path)
-      title = "" # TODO derive title from filename and|or org contents
-      puts `org2html #{orgfile_path}`
-      htmlfile_path = orgfile_path.gsub(".org", ".html")
-      htmldir_name = orgfile_path.gsub(".org", "")
-      body = body(htmlfile_path)
-      body = transform_divs_into_sections(body)
-      body = slide_layout(title, body)
-
-      # TODO use path of this file to find dir of template dir where gem is actually located
-
-      gem_root_path = File.expand_path(File.dirname(__FILE__))+"/.."
-      `cp -r #{gem_root_path}/templates/reveal_js_template #{htmldir_name}_generated_slides`
-      File.open("#{htmldir_name}_generated_slides/index.html", 'w') { |file| file.write(body) }
-      `rm #{htmlfile_path}`
-      return htmldir_name
-    end
-
-    def ast_to_reveal_js_structure(ast)
-      slides = []
-
-      # TODO: run to_html on ruby parser ast first, or can we do it after?
-
-      ast.headlines.each do |h|
-        slide_title =  h.body_lines[0].to_s
-        slide_body = h.body_lines[1..(h.body_lines.size-1)].map{|l| l.to_s}.join("\n")
-        slides << {:title => slide_title, :body => slide_body}
-      end
-
-      puts slides
-    end
-
     def convert(orgfile_path)
 
       org_body = contents = File.read(orgfile_path)
@@ -138,7 +106,7 @@ end
 
 
 
-# For now, monkeypath in revealjs export into the org-ruby lib
+# For now, monkeypatch in revealjs export into the org-ruby lib
 
 require 'org-ruby'
 
