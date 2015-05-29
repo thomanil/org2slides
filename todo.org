@@ -1,17 +1,18 @@
 * v1
 ** Upgrade reveal.js version
-   And make it less messy. Can I condense all the reveal js assets into single template file?
 ** Show bullet list <li>s progressively one after the other
    Generate using my new gem and old emacs batch, check diff
 
-** Try to figure out true code highlighting (syntax coloring)
-** Support directly embedding html markup
+** True code highlighting (syntax coloring)
+** Directly embedded html markup
+   (youtube embed etc)
 ** Support more params
    -v --version
 ** Make theme colors configurable
 *** Overriding/default theme
-*** Support introducing metadata about slide-specific overrides
-*** Support supplying a slide-style.css file with css overrides
+    Support embedding directly into org file. Remove on parse.
+*** Slide-specific overrides
+*** Support slide-style.css file with css overrides
 ** Write proper doc in readme
    Nice orgcontent -> screenshots before/after pics
    Examples of elements that are supported
