@@ -23,6 +23,15 @@ Usage
 `org2slides ORG_FILE_PATH`
 
 
+Testing
+=====
+
+To hack on this and test the code, clone it, then run the following
+whenever you need to do a smoketest:
+
+	ruby -Ilib bin/org2slides test.org && open test_generated_slides/index.html
+
+
 License
 =======
 
