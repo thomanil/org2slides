@@ -1,10 +1,11 @@
 * v0.8
-** Show bullet list <li>s progressively one after the other
-   Generate using my new gem and old emacs batch, check diff
 ** Publish gem
 * v1
 ** Upgrade reveal.js version
    And make it less messy. Can I condense all the reveal js assets into single template file?
+** Show bullet list <li>s progressively one after the other
+   Generate using my new gem and old emacs batch, check diff
+
 ** Try to figure out true code highlighting (syntax coloring)
 ** Support directly embedding html markup
 ** Support more params
@@ -29,3 +30,4 @@
 ** Jump to page N
 *** Jump directly to page n, either directly or by specifying line # in original orgfile
 *** Have elisp support that
+** Handle "too long" http filename urls automatically
