@@ -1,32 +1,29 @@
-* v1
+* 1.0
+** Add class=fragment to li elements
 ** Upgrade reveal.js version
-** Show bullet list <li>s progressively one after the other
-   Generate using my new gem and old emacs batch, check diff
-
-** True code highlighting (syntax coloring)
-** Directly embedded html markup
-   (youtube embed etc)
-** Support more params
+   https://github.com/hakimel/reveal.js
+** Apply revealjs own highlight.js support
+** Add version param
    -v --version
-** Make theme colors configurable
-*** Overriding/default theme
-    Support embedding directly into org file. Remove on parse.
-*** Slide-specific overrides
-*** Support slide-style.css file with css overrides
+** Add theme param
+   dark, solarized, etc, mathing the reveal js themes
+** Add slide-specific color overrides
 ** Write proper doc in readme
    Nice orgcontent -> screenshots before/after pics
    Examples of elements that are supported
    Etc
 
+** Blog post, launch
+** Elisp function example to call org2slides straight from emacs
+*** Shell out to the org2lisp tool, then launch open the generated index file
+
 * Later
 ** Tweak styling of image-only (with headline) slides
    LArger pic, fill screen?
    Headline placement?
-
-** Elisp function example to call org2slides straight from emacs
-*** Shell out to the org2lisp tool, then launch open the generated index file
+** Support directly embedded html markup
+   (youtube embed etc)
 
 ** Jump to page N
 *** Jump directly to page n, either directly or by specifying line # in original orgfile
 *** Have elisp support that
-** Handle "too long" http filename urls automatically
